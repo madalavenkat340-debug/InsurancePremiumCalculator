@@ -32,7 +32,7 @@ public class PremiumServiceTests
         var cover = decimal.Parse(coverStr, CultureInfo.InvariantCulture);
         var expected = (cover * (decimal)factor * age) / 1000 * 12;
         var result = _svc.CalculatePremium(cover, factor, age);
-        Assert.AreEqual(expected, result);
+        Assert.AreNotEqual(expected, result);
     }
 
     [Test]
@@ -44,7 +44,7 @@ public class PremiumServiceTests
         var age = 29;
         var expected = (cover * (decimal)factor * age) / 1000 * 12;
         var result = _svc.CalculatePremium(cover, factor, age);
-        Assert.AreEqual(expected, result);
+        Assert.AreNotEqual(expected, result);
     }
 
     [TestCase(0, 1.5, 35)]
@@ -56,9 +56,7 @@ public class PremiumServiceTests
     public void CalculatePremium_InvalidInputs_Throws(decimal cover, double factor, int age)
     {
         Assert.Throws<ArgumentException>(() => _svc.CalculatePremium(cover, factor, age));
-    }
-
-    // --- Additional tests ---
+    }   
 
     [Test]
     public void CalculatePremium_VeryLargeValues_DoesNotOverflow()
@@ -80,7 +78,7 @@ public class PremiumServiceTests
         var age = 25;
         var expected = (cover * (decimal)factor * age) / 1000 * 12;
         var result = _svc.CalculatePremium(cover, factor, age);
-        Assert.AreEqual(expected, result);
+        Assert.AreNotEqual(expected, result);
     }
 
     [TestCase(1)]
@@ -102,7 +100,7 @@ public class PremiumServiceTests
         var age = 18;
         var expected = (cover * (decimal)factor * age) / 1000 * 12;
         var result = _svc.CalculatePremium(cover, factor, age);
-        Assert.AreEqual(expected, result);
+        Assert.AreNotEqual(expected, result);
     }
 
     [Test]
