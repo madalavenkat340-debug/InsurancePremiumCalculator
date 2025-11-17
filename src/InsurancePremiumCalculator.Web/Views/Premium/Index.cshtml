@@ -1,0 +1,46 @@
+@using InsurancePremiumCalculator.Web.Models
+@{
+    var occupations = ViewData["Occupations"] as List<Occupation> ?? new List<Occupation>();
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="form">
+    <form id="premiumForm" method="post" action="/Premium/Calculate">
+        <div class="form-row">
+            <label for="Name">Name</label>
+            <input id="Name" name="Name" />
+        </div>
+        <div class="form-row">
+            <label for="AgeNextBirthday">Age Next Birthday</label>
+            <input id="AgeNextBirthday" name="AgeNextBirthday" type="number" />
+        </div>
+        <div class="form-row">
+            <label for="DateOfBirth">Date of Birth (MM/YYYY)</label>
+            <input id="DateOfBirth" name="DateOfBirth" placeholder="MM/YYYY" />
+        </div>
+        <div class="form-row">
+            <label for="Occupation">Occupation</label>
+            <select id="Occupation" name="Occupation">
+                <option value="">-- Select --</option>
+                @foreach (var occ in occupations)
+                {
+                    <option value="@occ.Name" data-factor="@occ.RatingFactor">@occ.Name (@occ.Rating)</option>
+                }
+            </select>
+        </div>
+        <div class="form-row">
+            <label for="DeathCoverAmount">Death - Sum Insured</label>
+            <input id="DeathCoverAmount" name="DeathCoverAmount" type="number" step="0.01" />
+        </div>
+
+        <div class="form-row">
+            <button type="button" id="btnCalculate">Calculate</button>
+        </div>
+    </form>
+
+    <div id="result">
+        <h3>Monthly Premium</h3>
+        <div id="premiumValue">-</div>
+        <div id="errors" style="color: red;"></div>
+    </div>
+</div>
