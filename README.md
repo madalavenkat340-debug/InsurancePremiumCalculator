@@ -17,7 +17,7 @@ Death Premium = (Death Cover Amount * Rating Factor * Age) / 1000 * 12
 2. From the `src/InsurancePremiumCalculator.Web` folder:
    - `dotnet restore`
    - `dotnet run`
-3. Open `https://localhost:5001` (or the URL shown).
+3. Open `https://localhost:53344` (or the URL shown).
 
 ## Unit Tests
 From the repository root:
