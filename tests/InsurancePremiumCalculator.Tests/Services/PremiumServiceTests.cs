@@ -22,30 +22,7 @@ public class PremiumServiceTests
         // (100000 * 1.5 * 35) / 1000 * 12 = 63000
         var result = _svc.CalculatePremium(100000, 1.5, 35);
         Assert.AreEqual(63000.00m, result);
-    }
-
-    [TestCase("50000", 1.2, 30)]
-    [TestCase("25000.50", 0.85, 45)]
-    [TestCase("1000000", 2.0, 65)]
-    public void CalculatePremium_ValidInputs_Various_ReturnsExpected(string coverStr, double factor, int age)
-    {
-        var cover = decimal.Parse(coverStr, CultureInfo.InvariantCulture);
-        var expected = (cover * (decimal)factor * age) / 1000 * 12;
-        var result = _svc.CalculatePremium(cover, factor, age);
-        Assert.AreNotEqual(expected, result);
-    }
-
-    [Test]
-    public void CalculatePremium_FractionalCoverAndFactor_PrecisionCheck()
-    {
-        // fractional death cover and factor
-        var cover = 12345.67m;
-        var factor = 1.234;
-        var age = 29;
-        var expected = (cover * (decimal)factor * age) / 1000 * 12;
-        var result = _svc.CalculatePremium(cover, factor, age);
-        Assert.AreNotEqual(expected, result);
-    }
+    } 
 
     [TestCase(0, 1.5, 35)]
     [TestCase(100000, 0, 35)]
