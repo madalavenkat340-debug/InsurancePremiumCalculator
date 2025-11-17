@@ -10,7 +10,7 @@ namespace InsurancePremiumCalculator.Tests.Services
                 throw new ArgumentException("All input values must be greater than zero.");
 
             // Formula: (deathCover * factor * age) / 1000 * 12
-            return Math.Round((deathCover * (decimal)factor * age) / 1000m * 12m, 2);
+            return Math.Round((deathCover * (decimal)factor * age) / 1000 * 12, 2);
         }
     }
 }

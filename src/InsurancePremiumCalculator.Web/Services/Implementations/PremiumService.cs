@@ -21,8 +21,8 @@ public class PremiumService : IPremiumService
         if (ageNextBirthday <= 0 || ageNextBirthday > 120)
             throw new ArgumentOutOfRangeException(nameof(ageNextBirthday), "Age must be between 1 and 120.");
 
-        // Formula: ((Death Cover amount * Occupation Rating Factor * Age) / 1000) * 12
-        var annualPremium = ((deathCoverAmount * (decimal)ratingFactor * ageNextBirthday) / 1000m) * 12m;
+        // Formula: (Death Cover amount * Occupation Rating Factor * Age) / 1000 * 12
+        var annualPremium = (deathCoverAmount * (decimal)ratingFactor * ageNextBirthday) / 1000 * 12;
         return decimal.Round(annualPremium, 2, MidpointRounding.AwayFromZero);
     }
 }
